@@ -90,7 +90,6 @@ private BeneficiaryViewModel viewModel;
                     beneficiary.setBeneficiaryPhone(phone);
                     beneficiary.setBeneficiaryAddress(address);
                     viewModel.addBeneficiary(beneficiary);
-
                 }
 
 

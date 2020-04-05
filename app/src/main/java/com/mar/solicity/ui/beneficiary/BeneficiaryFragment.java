@@ -1,43 +1,101 @@
 package com.mar.solicity.ui.beneficiary;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.mar.solicity.R;
+import com.mar.solicity.data.Beneficiary;
+import com.mar.solicity.ui.RecyclerViewClickListener;
 
-public class BeneficiaryFragment extends Fragment {
-    FloatingActionButton addbtn;
+import java.util.ArrayList;
 
+
+public class BeneficiaryFragment extends Fragment implements RecyclerViewClickListener {
+    private RecyclerView recyclerView;
+    private BeneficiaryAdapter beneficiaryAdapter;
     private BeneficiaryViewModel beneficiaryViewModel;
+    AlertDialog.Builder builder;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_beneficiary, container, false);
         beneficiaryViewModel =
                 ViewModelProviders.of(this).get(BeneficiaryViewModel.class);
-        final View view = inflater.inflate(R.layout.fragment_beneficiary, container, false);
+            beneficiaryAdapter = new  BeneficiaryAdapter();
+
+        builder = new AlertDialog.Builder(requireContext());
+        beneficiaryAdapter.listener = this;
+
+            recyclerView = view.findViewById(R.id.recycler_view_bene);
+            recyclerView.setAdapter(beneficiaryAdapter);
+
+            beneficiaryViewModel.fetchBeneficiaries();
+            beneficiaryViewModel.getBeneficiaryUpdates();
+
+            beneficiaryViewModel.beneficiariesList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Beneficiary>>() {
+                @Override
+                public void onChanged(ArrayList<Beneficiary> ben) {
+                beneficiaryAdapter.setBeneficiaries(ben);
+                }
+            });
+            beneficiaryViewModel.beneficiariesLiveitems().observe(getViewLifecycleOwner(), new Observer<Beneficiary>() {
+                @Override
+                public void onChanged(Beneficiary beneficiary) {
+                    beneficiaryAdapter.addBeneficiary(beneficiary);
+                }
+            });
+
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new AddBeneficiaryDialogFragment().show(BeneficiaryFragment.this.getChildFragmentManager(), "");
 
+
             }
         });
 
         return view;
     }
+
+    @Override
+    public void onRecyclerViewItemClicked(View view, final Beneficiary beneficiary) {
+
+        switch (view.getId()){
+            case R.id.button_Edit_Ben:
+                new EditBeneficiaryDialogFragment(beneficiary).show(BeneficiaryFragment.this.getChildFragmentManager(),"");
+                break;
+
+            case R.id.button_Delete_Ben:
+               builder.setTitle(R.string.delete_confirmation);
+               builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       beneficiaryViewModel.deleteBeneficiary(beneficiary);
+                   }
+
+               }).setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                   }
+               });
+               AlertDialog alertDialog = builder.create();
+               alertDialog.show();
+               break;
+        }
+    }
+
 
 }
