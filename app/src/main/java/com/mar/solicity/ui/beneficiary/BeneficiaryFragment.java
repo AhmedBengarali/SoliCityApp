@@ -6,17 +6,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mar.solicity.R;
 import com.mar.solicity.data.Beneficiary;
-import com.mar.solicity.ui.RecyclerViewClickListener;
 
 import java.util.ArrayList;
 
@@ -27,21 +33,22 @@ public class BeneficiaryFragment extends Fragment implements RecyclerViewClickLi
     private BeneficiaryViewModel beneficiaryViewModel;
     AlertDialog.Builder builder;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_beneficiary, container, false);
         beneficiaryViewModel =
                 ViewModelProviders.of(this).get(BeneficiaryViewModel.class);
+
             beneficiaryAdapter = new  BeneficiaryAdapter();
 
-        builder = new AlertDialog.Builder(requireContext());
-        beneficiaryAdapter.listener = this;
+                builder = new AlertDialog.Builder(requireContext());
+                beneficiaryAdapter.listener = this;
 
             recyclerView = view.findViewById(R.id.recycler_view_bene);
             recyclerView.setAdapter(beneficiaryAdapter);
 
             beneficiaryViewModel.fetchBeneficiaries();
-            beneficiaryViewModel.getBeneficiaryUpdates();
 
             beneficiaryViewModel.beneficiariesList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Beneficiary>>() {
                 @Override
@@ -49,14 +56,8 @@ public class BeneficiaryFragment extends Fragment implements RecyclerViewClickLi
                 beneficiaryAdapter.setBeneficiaries(ben);
                 }
             });
-            beneficiaryViewModel.beneficiariesLiveitems().observe(getViewLifecycleOwner(), new Observer<Beneficiary>() {
-                @Override
-                public void onChanged(Beneficiary beneficiary) {
-                    beneficiaryAdapter.addBeneficiary(beneficiary);
-                }
-            });
 
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+        FloatingActionButton fab = view.findViewById(R.id.add_ben);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +84,7 @@ public class BeneficiaryFragment extends Fragment implements RecyclerViewClickLi
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        beneficiaryViewModel.deleteBeneficiary(beneficiary);
+                       beneficiaryAdapter.notifyDataSetChanged();
                    }
 
                }).setNegativeButton("Annuler", new DialogInterface.OnClickListener() {

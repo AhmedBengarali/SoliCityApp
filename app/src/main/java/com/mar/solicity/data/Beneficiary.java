@@ -1,12 +1,8 @@
 package com.mar.solicity.data;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-
 import com.google.firebase.database.Exclude;
 
-import java.util.Objects;
 
 public class Beneficiary {
     @Exclude
@@ -16,19 +12,17 @@ public class Beneficiary {
     String beneficiaryPhone;
     String beneficiaryAddress;
 
-    @Exclude
-    Boolean isDeleted = false;
 
 
     public Beneficiary() {
     }
 
-    public Beneficiary(@NonNull String beneficiaryId, String beneficiaryName, String beneficiaryPhone, String beneficiaryAddress, Boolean isDeleted) {
+    public Beneficiary(@NonNull String beneficiaryId, String beneficiaryName, String beneficiaryPhone, String beneficiaryAddress) {
         this.beneficiaryId = beneficiaryId;
         this.beneficiaryName = beneficiaryName;
         this.beneficiaryPhone = beneficiaryPhone;
         this.beneficiaryAddress = beneficiaryAddress;
-        this.isDeleted = isDeleted;
+
     }
 
     @Exclude
@@ -37,6 +31,7 @@ public class Beneficiary {
         return beneficiaryId;
     }
 
+    @Exclude
     public void setBeneficiaryId(@NonNull String beneficiaryId) {
         this.beneficiaryId = beneficiaryId;
     }
@@ -65,28 +60,6 @@ public class Beneficiary {
         this.beneficiaryAddress = beneficiaryAddress;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if(obj instanceof Beneficiary){
-            ((Beneficiary) obj).beneficiaryId = beneficiaryId;
-            return true;
-        }
-        else
-            return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(beneficiaryId, beneficiaryName);
-    }
 }
 
 

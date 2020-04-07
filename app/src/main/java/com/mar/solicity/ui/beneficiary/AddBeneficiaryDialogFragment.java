@@ -53,7 +53,7 @@ private BeneficiaryViewModel viewModel;
 
                 // Check for a valid Name.
                 if (beneficiaryTextName.getText().toString().isEmpty()) {
-                    beneficiaryTextName.setError(getResources().getString(R.string.email_error));
+                    beneficiaryTextName.setError(getResources().getString(R.string.name_error));
 
                     isNameValid = false;
                 }else{

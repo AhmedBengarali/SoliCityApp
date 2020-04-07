@@ -1,16 +1,16 @@
-package com.mar.solicity.ui.gallery;
+package com.mar.solicity.ui.donation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class DonationViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public DonationViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is Donation fragment");
     }
 
     public LiveData<String> getText() {

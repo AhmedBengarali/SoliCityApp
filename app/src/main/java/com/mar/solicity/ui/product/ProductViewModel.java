@@ -1,17 +1,12 @@
-package com.mar.solicity.ui.beneficiary;
-
-import android.content.Context;
-import android.widget.ArrayAdapter;
+package com.mar.solicity.ui.product;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,27 +14,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.mar.solicity.data.Beneficiary;
-
+import com.mar.solicity.data.Product;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class BeneficiaryViewModel extends ViewModel {
+public class ProductViewModel extends ViewModel {
 
-
-    private DatabaseReference dbBeneficiary = FirebaseDatabase.getInstance().getReference("Beneficiaries");
+    private DatabaseReference dbProduct = FirebaseDatabase.getInstance().getReference("Products");
 
     private MutableLiveData<Boolean> _result = new MutableLiveData<>();
     @NotNull
     LiveData result() { return (LiveData)this._result; }
 
-    private MutableLiveData<ArrayList<Beneficiary>> _beneficiarieslist = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Product>> _productslist = new MutableLiveData<>();
     @NotNull
-    LiveData<ArrayList<Beneficiary>> beneficiariesList() { return _beneficiarieslist; }
+    LiveData<ArrayList<Product>> productsList() { return _productslist; }
 
-    void addBeneficiary(Beneficiary beneficiary){
-        String id = dbBeneficiary.push().getKey();
-        dbBeneficiary.child(id).setValue(beneficiary)
+
+
+
+
+    void addProduct(Product product){
+        String id = dbProduct.push().getKey();
+        dbProduct.child(id).setValue(product)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -53,25 +51,20 @@ public class BeneficiaryViewModel extends ViewModel {
 
     }
 
-
-    void fetchBeneficiaries(){
-
-        dbBeneficiary.addValueEventListener(new ValueEventListener() {
+    void fetchProducts(){
+        dbProduct.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    ArrayList<Beneficiary> beneficiaries = new ArrayList<>();
-                    beneficiaries.clear();
+                    ArrayList<Product> products = new ArrayList<>();
                     for (DataSnapshot datasnapshot: snapshot.getChildren()){
-                        Beneficiary beneficiary = (Beneficiary)datasnapshot.getValue(Beneficiary.class);
-                        assert beneficiary != null;
-                        beneficiary.setBeneficiaryId(Objects.requireNonNull(datasnapshot.getKey()));
-                        beneficiaries.add(beneficiary);
+                        Product product = (Product) datasnapshot.getValue(Product.class);
+//                        assert beneficiary != null;
+                        product.setProductId(Objects.requireNonNull(datasnapshot.getKey()));
+                        products.add(product);
                     }
-
-                    _beneficiarieslist.postValue(beneficiaries);
+                    _productslist.postValue(products);
                 }
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -80,10 +73,8 @@ public class BeneficiaryViewModel extends ViewModel {
         });
     }
 
-
-    void updateBeneficiary(Beneficiary benef){
-
-        dbBeneficiary.child(benef.getBeneficiaryId()).setValue(benef)
+    void updateProduct(Product product){
+        dbProduct.child(product.getProductId()).setValue(product)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -96,15 +87,14 @@ public class BeneficiaryViewModel extends ViewModel {
                 });
     }
 
-    void deleteBeneficiary(Beneficiary beneficiary){
-        String id = beneficiary.getBeneficiaryId();
-        dbBeneficiary.child(id).setValue(null)
+    void deleteProduct(Product product){
+        String id = product.getProductId();
+        dbProduct.child(id).setValue(null)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             _result.postValue(null);
-
                         }else{
                             _result.postValue(true);
                         }
@@ -112,8 +102,4 @@ public class BeneficiaryViewModel extends ViewModel {
                 });
     }
 
-
-    public LiveData<ArrayList<Beneficiary>> getLiveData() {
-        return getLiveData();
-    }
 }

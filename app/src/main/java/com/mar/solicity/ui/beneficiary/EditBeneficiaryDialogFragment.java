@@ -27,6 +27,7 @@ ProgressBar progressBar;
 boolean isNameValid, isPhoneValid, isAddressValid;
 private BeneficiaryViewModel EditviewModel;
 
+
     public EditBeneficiaryDialogFragment(Beneficiary beneficiary) {
         this.beneficiary = beneficiary;
     }
@@ -55,9 +56,9 @@ private BeneficiaryViewModel EditviewModel;
                 String phone = beneficiaryEditTextPhone.getText().toString();
                 String address = beneficiaryEditTextAddress.getText().toString();
 
-                // Check for a va
+                // Check for a valid name
                 if (beneficiaryEditTextName.getText().toString().isEmpty()) {
-                    beneficiaryEditTextName.setError(getResources().getString(R.string.email_error));
+                    beneficiaryEditTextName.setError(getResources().getString(R.string.name_error));
 
                     isNameValid = false;
                 }else{

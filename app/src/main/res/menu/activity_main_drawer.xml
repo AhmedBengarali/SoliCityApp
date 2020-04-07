@@ -2,20 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
+<item android:title="Main Application">
+    <group android:checkableBehavior="single"
+        android:menuCategory="container">
         <item
             android:id="@+id/nav_beneficiary"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_care"
             android:title="@string/menu_beneficiary" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_product"
+            android:icon="@drawable/ic_food_donation"
+            android:title="@string/menu_product" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_donation"
+            android:icon="@drawable/ic_box"
+            android:title="@string/menu_dons" />
     </group>
+</item>
 
 </menu>

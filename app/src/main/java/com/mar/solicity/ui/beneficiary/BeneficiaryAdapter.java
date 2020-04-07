@@ -12,14 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mar.solicity.R;
 import com.mar.solicity.data.Beneficiary;
-import com.mar.solicity.ui.RecyclerViewClickListener;
 
 import java.util.ArrayList;
 
 public class BeneficiaryAdapter extends RecyclerView.Adapter<BeneficiaryAdapter.BenViewHolder> {
 
     private ArrayList<Beneficiary> beneficiaryArrayList = new ArrayList<>();
-
 
     public RecyclerViewClickListener listener = null;
 
@@ -61,33 +59,34 @@ public class BeneficiaryAdapter extends RecyclerView.Adapter<BeneficiaryAdapter.
         notifyDataSetChanged();
     }
 
-    public void addBeneficiary(Beneficiary beneficiary) {
-        if (!beneficiaryArrayList.contains(beneficiary)) {
-
-            this.beneficiaryArrayList.add(beneficiary);
-            System.out.println("hello");
-            notifyDataSetChanged();
-        } else {
-            int index = beneficiaryArrayList.indexOf(beneficiary);
-            if (beneficiary.getDeleted()) {
-                System.out.println("index" + index);
-                beneficiaryArrayList.remove(index);
-            } else {
-                beneficiaryArrayList.set(index, beneficiary);
-                notifyDataSetChanged();
-            }
-        }
-
-//        public void addBeneficiary(Beneficiary beneficiary) {
-//            if (!this.beneficiaryArrayList.contains(beneficiary)) {
-//                this.beneficiaryArrayList.add(beneficiary);
+//    public void addBeneficiary(Beneficiary beneficiary) {
+//        if (!beneficiaryArrayList.contains(beneficiary)) {
+//
+//            this.beneficiaryArrayList.add(beneficiary);
+//            System.out.println("hello");
+//            notifyDataSetChanged();
+//        } else {
+//            int index = beneficiaryArrayList.indexOf(beneficiary);
+//            if (beneficiary.getDeleted()) {
+//                System.out.println("index" + index);
+//                beneficiaryArrayList.remove(index);
+//            } else {
+//                beneficiaryArrayList.set(index, beneficiary);
 //                notifyDataSetChanged();
-//                System.out.println("true"+beneficiary);
-//    }
+//            }
 //        }
-
-
-    }
+//
+//
+//
+//
+////    }
+//    public void addBeneficiary(Beneficiary beneficiary) {
+//
+//        this.beneficiaryArrayList.add(beneficiary);
+//        notifyDataSetChanged();
+//        System.out.println("true"+beneficiary);
+//
+//    }
 
     class BenViewHolder extends RecyclerView.ViewHolder {
         TextView Ben_name;

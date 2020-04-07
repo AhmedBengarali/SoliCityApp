@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.mar.solicity"
-        minSdkVersion 23
+        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -21,6 +21,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res',
+                        'src/main/res/layouts/beneficiary',
+                        'src/main/res/layouts/product',
+                        'src/main/res/layouts/donation'
+            }
         }
     }
 
