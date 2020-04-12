@@ -22,11 +22,11 @@ import com.mar.solicity.data.Beneficiary;
 
 
 public class AddBeneficiaryDialogFragment extends DialogFragment {
-Button addBeneficiaryBtn;
-EditText beneficiaryTextName,beneficiaryTextPhone,beneficiaryTextAddress;
-ProgressBar progressBar;
-boolean isNameValid, isPhoneValid, isAddressValid;
-private BeneficiaryViewModel viewModel;
+    Button addBeneficiaryBtn;
+    EditText beneficiaryTextName, beneficiaryTextCin, beneficiaryTextPhone, beneficiaryTextAddress;
+    ProgressBar progressBar;
+    boolean isNameValid, isCinValid, isPhoneValid, isAddressValid;
+    private BeneficiaryViewModel viewModel;
 
 
     @Override
@@ -38,16 +38,17 @@ private BeneficiaryViewModel viewModel;
 
         addBeneficiaryBtn = view.findViewById(R.id.button_add_ben);
         beneficiaryTextName = view.findViewById(R.id.edit_text_Ben_name);
+        beneficiaryTextCin = view.findViewById(R.id.edit_text_Ben_cin);
         beneficiaryTextPhone = view.findViewById(R.id.edit_text_Ben_phone);
         beneficiaryTextAddress = view.findViewById(R.id.edit_text_Ben_address);
         progressBar = view.findViewById(R.id.add_ben_dialog_progressbar);
-
 
 
         addBeneficiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = beneficiaryTextName.getText().toString();
+                String cin = beneficiaryTextCin.getText().toString();
                 String phone = beneficiaryTextPhone.getText().toString();
                 String address = beneficiaryTextAddress.getText().toString();
 
@@ -56,18 +57,28 @@ private BeneficiaryViewModel viewModel;
                     beneficiaryTextName.setError(getResources().getString(R.string.name_error));
 
                     isNameValid = false;
-                }else{
-                    isNameValid=true;
+                } else {
+                    isNameValid = true;
+                }
+                // Check for a valid CIN Number.
+                if (beneficiaryTextCin.getText().toString().isEmpty()) {
+                    beneficiaryTextCin.setError(getResources().getString(R.string.cin_error));
+                    isCinValid = false;
+                } else if (beneficiaryTextCin.getText().length() < 8 || beneficiaryTextCin.getText().length() > 8) {
+                    beneficiaryTextCin.setError(getResources().getString(R.string.error_invalid_cin));
+                    isCinValid = false;
+                } else {
+                    isCinValid = true;
                 }
 
                 // Check for a valid Phone Number.
-                if (beneficiaryTextPhone.getText().toString().isEmpty()){
+                if (beneficiaryTextPhone.getText().toString().isEmpty()) {
                     beneficiaryTextPhone.setError(getResources().getString(R.string.phone_error));
                     isPhoneValid = false;
-                }else if (beneficiaryTextPhone.getText().length() < 8) {
+                } else if (beneficiaryTextPhone.getText().length() < 8) {
                     beneficiaryTextPhone.setError(getResources().getString(R.string.error_invalid_phone));
                     isPhoneValid = false;
-                }else {
+                } else {
                     isPhoneValid = true;
                 }
 
@@ -76,17 +87,18 @@ private BeneficiaryViewModel viewModel;
                     beneficiaryTextAddress.setError(getResources().getString(R.string.address_error));
 
                     isAddressValid = false;
-                }else{
-                    isAddressValid=true;
+                } else {
+                    isAddressValid = true;
                 }
 
-                if (isNameValid&&isPhoneValid&&isAddressValid){
+                if (isNameValid && isCinValid && isPhoneValid && isAddressValid) {
                     beneficiaryTextAddress.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     progressBar.setVisibility(View.VISIBLE);
 
 
                     Beneficiary beneficiary = new Beneficiary();
                     beneficiary.setBeneficiaryName(name);
+                    beneficiary.setBeneficiaryCIN(cin);
                     beneficiary.setBeneficiaryPhone(phone);
                     beneficiary.setBeneficiaryAddress(address);
                     viewModel.addBeneficiary(beneficiary);
@@ -98,10 +110,10 @@ private BeneficiaryViewModel viewModel;
         viewModel.result().observe(getViewLifecycleOwner(), new Observer() {
             @Override
             public void onChanged(Object o) {
-                if (o == null){
+                if (o == null) {
                     Toast.makeText(requireContext(), "Bénéficiaires Ajouté", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(requireContext(), "Une erreur est survenue" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "Une erreur est survenue", Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.GONE);
                 dismiss();
@@ -117,7 +129,7 @@ private BeneficiaryViewModel viewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setStyle(STYLE_NO_TITLE,android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+        this.setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
     }
 
 

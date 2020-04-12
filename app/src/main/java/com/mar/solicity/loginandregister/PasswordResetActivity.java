@@ -24,6 +24,7 @@ public class PasswordResetActivity extends AppCompatActivity {
     Button resetButton;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +67,10 @@ public class PasswordResetActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

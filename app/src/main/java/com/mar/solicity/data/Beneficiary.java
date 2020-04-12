@@ -1,6 +1,7 @@
 package com.mar.solicity.data;
 
 import androidx.annotation.NonNull;
+
 import com.google.firebase.database.Exclude;
 
 
@@ -9,20 +10,20 @@ public class Beneficiary {
     @NonNull
     String beneficiaryId;
     String beneficiaryName;
+    String beneficiaryCIN;
     String beneficiaryPhone;
     String beneficiaryAddress;
-
 
 
     public Beneficiary() {
     }
 
-    public Beneficiary(@NonNull String beneficiaryId, String beneficiaryName, String beneficiaryPhone, String beneficiaryAddress) {
+    public Beneficiary(@NonNull String beneficiaryId, String beneficiaryName, String beneficiaryCIN, String beneficiaryPhone, String beneficiaryAddress) {
         this.beneficiaryId = beneficiaryId;
         this.beneficiaryName = beneficiaryName;
+        this.beneficiaryCIN = beneficiaryCIN;
         this.beneficiaryPhone = beneficiaryPhone;
         this.beneficiaryAddress = beneficiaryAddress;
-
     }
 
     @Exclude
@@ -34,6 +35,14 @@ public class Beneficiary {
     @Exclude
     public void setBeneficiaryId(@NonNull String beneficiaryId) {
         this.beneficiaryId = beneficiaryId;
+    }
+
+    public String getBeneficiaryCIN() {
+        return beneficiaryCIN;
+    }
+
+    public void setBeneficiaryCIN(String beneficiaryCIN) {
+        this.beneficiaryCIN = beneficiaryCIN;
     }
 
     public String getBeneficiaryName() {
@@ -59,6 +68,7 @@ public class Beneficiary {
     public void setBeneficiaryAddress(String beneficiaryAddress) {
         this.beneficiaryAddress = beneficiaryAddress;
     }
+
 
 }
 

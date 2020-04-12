@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Ajouter Un Bénéficiare"
+        android:text="@string/ajouter_un_beneficiare"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
@@ -29,7 +29,23 @@
             android:id="@+id/edit_text_Ben_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Nom Du Bénéficiare" />
+            android:hint="@string/nom_beneficiare" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_cin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_Ben_cin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:hint="@string/cin_beneficiaire"
+            android:textAlignment="textEnd"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,8 +59,9 @@
             android:id="@+id/edit_text_Ben_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textAlignment="textEnd"
             android:inputType="phone"
-            android:hint="Numéro De Téléphone Du Bénéficiare" />
+            android:hint="@string/numero_beneficiaire" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,9 +75,11 @@
             android:id="@+id/edit_text_Ben_address"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Adresse Du Bénéficiare" />
+            android:hint="@string/adresse_beneficiaire" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/button_add_ben"
@@ -68,7 +87,8 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:clickable="true"
-        android:text="Ajouter"
+        android:textSize="20sp"
+        android:text="@string/button_ajouter_un_beneficiare"
         android:textColor="@android:color/white"
         android:focusable="true" />
 </LinearLayout>

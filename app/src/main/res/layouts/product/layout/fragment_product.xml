@@ -6,11 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.product.ProductFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <Spinner
+
+            android:textAlignment="center"
+            android:id="@+id/filter_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:gravity="center"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:id="@+id/recycler_view_bene"
+        android:id="@+id/recycler_view_products"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
         tools:listitem="@layout/recycler_view_product" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

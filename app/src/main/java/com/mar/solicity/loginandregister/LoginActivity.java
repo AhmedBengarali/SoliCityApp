@@ -26,18 +26,18 @@ import com.mar.solicity.R;
 
 
 public class LoginActivity extends AppCompatActivity {
-    EditText mEmail,mPassword;
+    EditText mEmail, mPassword;
     Button mLoginBtn;
     TextView mCreateBtn, forgetTextLink;
     boolean isEmailValid, isPasswordValid;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     FirebaseUser currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Check for a valid email address and password.
                 if (isEmailValid && isPasswordValid) {
-                                mPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                    mPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
                     Toast.makeText(getApplicationContext(), "One Moment !", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.VISIBLE);
@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
 
@@ -118,15 +118,16 @@ public class LoginActivity extends AppCompatActivity {
         mCreateBtn = findViewById(R.id.text_view_register);
         forgetTextLink = findViewById(R.id.text_view_forget_password);
     }
+
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(currentUser!=null){
+        if (currentUser != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

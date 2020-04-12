@@ -22,6 +22,7 @@ public class Product {
         this.productUnit = productUnit;
         this.productQuantity = productQuantity;
     }
+
     @Exclude
     @NonNull
     public String getProductId() {

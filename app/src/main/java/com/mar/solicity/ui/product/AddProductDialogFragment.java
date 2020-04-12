@@ -28,6 +28,7 @@ public class AddProductDialogFragment extends DialogFragment {
     Button addProduct;
     boolean isNameValid, isQuantityValid;
     private ProductViewModel viewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,24 +51,23 @@ public class AddProductDialogFragment extends DialogFragment {
                     productName.setError(getResources().getString(R.string.product_name_error));
 
                     isNameValid = false;
-                }else{
-                    isNameValid=true;
+                } else {
+                    isNameValid = true;
                 }
 
                 if (productQuantity.getText().toString().isEmpty()) {
                     productQuantity.setError(getResources().getString(R.string.product_name_error));
 
                     isQuantityValid = false;
-                }else if (productQuantity.getText().toString().equals(0)){
+                } else if (productQuantity.getText().toString().equals(0)) {
 
                     productQuantity.setError(getResources().getString(R.string.product_name_error));
                     isQuantityValid = false;
-                }
-                else{
-                    isQuantityValid=true;
+                } else {
+                    isQuantityValid = true;
                 }
 
-                if (isNameValid&&isQuantityValid){
+                if (isNameValid && isQuantityValid) {
                     productQuantity.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     progressBar.setVisibility(View.VISIBLE);
 
@@ -83,10 +83,10 @@ public class AddProductDialogFragment extends DialogFragment {
         viewModel.result().observe(getViewLifecycleOwner(), new Observer() {
             @Override
             public void onChanged(Object o) {
-                if (o == null){
+                if (o == null) {
                     Toast.makeText(requireContext(), "Produit Ajouté", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(requireContext(), "Une erreur est survenue" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "Une erreur est survenue", Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.GONE);
                 dismiss();
@@ -97,10 +97,11 @@ public class AddProductDialogFragment extends DialogFragment {
 
         return view;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setStyle(STYLE_NO_TITLE,android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+        this.setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
     }
 //        productUnity.setEnabled(false);
 }

@@ -62,24 +62,23 @@ public class EditProductDialogFragment extends DialogFragment {
                     productName.setError(getResources().getString(R.string.product_name_error));
 
                     isNameValid = false;
-                }else{
-                    isNameValid=true;
+                } else {
+                    isNameValid = true;
                 }
 
                 if (productQuantity.getText().toString().isEmpty()) {
                     productQuantity.setError(getResources().getString(R.string.product_name_error));
 
                     isQuantityValid = false;
-                }else if (productQuantity.getText().toString().equals(0)){
+                } else if (productQuantity.getText().toString().equals(0)) {
 
                     productQuantity.setError(getResources().getString(R.string.product_name_error));
                     isQuantityValid = false;
-                }
-                else{
-                    isQuantityValid=true;
+                } else {
+                    isQuantityValid = true;
                 }
 
-                if (isNameValid&&isQuantityValid){
+                if (isNameValid && isQuantityValid) {
                     productQuantity.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     progressBar.setVisibility(View.VISIBLE);
 
@@ -93,10 +92,10 @@ public class EditProductDialogFragment extends DialogFragment {
         viewModel.result().observe(getViewLifecycleOwner(), new Observer() {
             @Override
             public void onChanged(Object o) {
-                if (o == null){
+                if (o == null) {
                     Toast.makeText(requireContext(), "Produit Modifié", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(requireContext(), "Une erreur est survenue" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "Une erreur est survenue", Toast.LENGTH_SHORT).show();
                 }
                 progressBar.setVisibility(View.GONE);
                 dismiss();
@@ -111,6 +110,6 @@ public class EditProductDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setStyle(STYLE_NO_TITLE,android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+        this.setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
     }
 }

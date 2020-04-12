@@ -29,7 +29,7 @@ android {
                 srcDirs 'src/main/res',
                         'src/main/res/layouts/beneficiary',
                         'src/main/res/layouts/product',
-                        'src/main/res/layouts/donation'
+                        'src/main/res/layouts/Donation'
             }
         }
     }

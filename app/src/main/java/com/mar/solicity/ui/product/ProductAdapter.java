@@ -1,5 +1,6 @@
 package com.mar.solicity.ui.product;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,11 @@ import com.mar.solicity.ui.beneficiary.RecyclerViewClickListener;
 import java.util.ArrayList;
 
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProdViewHolder>{
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProdViewHolder> {
 
     private ArrayList<Product> productsArrayList = new ArrayList<>();
     public ProductFragment listener = null;
+
 
     @NonNull
     @Override
@@ -31,7 +33,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProdView
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProdViewHolder holder, final int position) {
         holder.itemView.setTag(productsArrayList.get(position));
+
         holder.prod_text.setText("Quantité :");
+
+
         holder.prod_name.setText(productsArrayList.get(position).getProductName());
         holder.prod_quantity.setText(productsArrayList.get(position).getProductQuantity());
         holder.prod_unit.setText(productsArrayList.get(position).getProductUnit());
@@ -54,23 +59,34 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProdView
         return productsArrayList.size();
     }
 
-    public void setProduct(ArrayList<Product> product) {
-        productsArrayList = product;
+    public void setAllProduct(ArrayList<Product> product) {
+        productsArrayList = (ArrayList<Product>) product;
         notifyDataSetChanged();
     }
 
-     class ProdViewHolder extends RecyclerView.ViewHolder{
-         TextView prod_text,prod_name,prod_quantity,prod_unit;
-         ImageButton prod_edit, prod_Delete;
-         public ProdViewHolder(@NonNull View itemView) {
-             super(itemView);
-             prod_text = itemView.findViewById(R.id.text_view_quant);
-             prod_name = itemView.findViewById(R.id.textViewProdName);
-             prod_quantity = itemView.findViewById(R.id.text_view_prod_quantity);
-             prod_unit = itemView.findViewById(R.id.text_view_prod_unit);
+    public void setInStockProduct(ArrayList<Product> prod) {
+        productsArrayList = (ArrayList<Product>) prod;
+        notifyDataSetChanged();
+    }
 
-             prod_edit = itemView.findViewById(R.id.button_edit_prod);
-             prod_Delete = itemView.findViewById(R.id.button_Delete_prod);
-         }
-     }
+    public void setOutOfStockProduct(ArrayList<Product> prod) {
+        productsArrayList = (ArrayList<Product>) prod;
+        notifyDataSetChanged();
+    }
+
+    class ProdViewHolder extends RecyclerView.ViewHolder {
+        TextView prod_text, prod_name, prod_quantity, prod_unit;
+        ImageButton prod_edit, prod_Delete;
+
+        public ProdViewHolder(@NonNull View itemView) {
+            super(itemView);
+            prod_text = itemView.findViewById(R.id.text_view_quant);
+            prod_name = itemView.findViewById(R.id.textViewProdName);
+            prod_quantity = itemView.findViewById(R.id.text_view_prod_quantity);
+            prod_unit = itemView.findViewById(R.id.text_view_prod_unit);
+
+            prod_edit = itemView.findViewById(R.id.button_edit_prod);
+            prod_Delete = itemView.findViewById(R.id.button_Delete_prod);
+        }
+    }
 }

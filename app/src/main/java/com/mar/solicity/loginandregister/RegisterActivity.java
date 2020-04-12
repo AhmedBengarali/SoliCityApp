@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mPassword;
     Button mRegistrationBtn;
     TextView mLoginBtn;
-    boolean  isEmailValid, isPasswordValid;
+    boolean isEmailValid, isPasswordValid;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressbar);
 
-        if (fAuth.getCurrentUser() != null){
+        if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String txt_email = mEmail.getText().toString().trim();
-                 String txt_password = mPassword.getText().toString().trim();
+                String txt_password = mPassword.getText().toString().trim();
 
                 // Check for a valid email address.
                 if (mEmail.getText().toString().isEmpty()) {
@@ -144,6 +144,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

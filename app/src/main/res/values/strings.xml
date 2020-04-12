@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">SoliCity</string>
     <string name="name_error">Please enter your name</string>
+    <string name="cin_error">Please enter your CIN number</string>
     <string name="phone_error">Please enter a phone number</string>
     <string name="email_error">Please enter a email address</string>
     <string name="address_error">Please enter a email address</string>
+    <string name="error_invalid_cin">votre numéro de CIN doit comporter seulement 8 chiffres </string>
     <string name="error_invalid_phone">votre numéro de téléphone doit comporter 8 chiffres minimum</string>
     <string name="error_invalid_email">Email is not valid</string>
     <string name="password_error">Please enter a password</string>
@@ -18,18 +20,34 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Logout</string>
     <string name="delete_confirmation">Etes-vous sûr que vous voulez supprimer</string>
-
     <string name="menu_beneficiary">Gestion des Bénéficiares</string>
     <string name="menu_product">Gestion de Stock</string>
     <string name="menu_dons">Gestion des Dons</string>
-
     <string name="product_name_error">Veuillez entrez un nom de produit</string>
     <string name="product_quantity_error">Veuillez entrez la quantité à ajouté</string>
 
-  <array name="unit">
+<!--/َfragment Add beneficiary Dialog-->
+    <string name="ajouter_un_beneficiare">إضافة مستفيد</string>
+    <string name="nom_beneficiare">الاسم و اللقب </string>
+    <string name="numero_beneficiaire">الهاتف </string>
+    <string name="adresse_beneficiaire">العنوان </string>
+    <string name="cin_beneficiaire">رقم بطاقة التعريف الوطنية </string>
+    <string name="button_ajouter_un_beneficiare">إضافة</string>
+
+    <!--/َfragment Add beneficiary Dialog-->
+    <string name="modifier_un_beneficiare">تعديل بيانات المستفيد</string>
+    <string name="button_modifier_beneficiare">تعديل</string>
+
+
+    <array name="unit">
       <item>Kg</item>
       <item>Litre</item>
       <item>Unité</item>
   </array>
+    <array name="filter_Product">
+        <item>Tous les Produits </item>
+        <item>Produits En Stock</item>
+        <item>produits Epuisés</item>
+    </array>
 
 </resources>

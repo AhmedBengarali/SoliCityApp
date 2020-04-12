@@ -25,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth;
     private AppBarConfiguration mAppBarConfiguration;
     private long backPressedTime;
     private Toast backtoast;
@@ -57,7 +57,7 @@ FirebaseAuth firebaseAuth;
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 int menuId = destination.getId();
 
-                switch (menuId){
+                switch (menuId) {
 
                 }
             }
@@ -75,7 +75,7 @@ FirebaseAuth firebaseAuth;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        switch (itemId){
+        switch (itemId) {
             case R.id.action_logout:
                 firebaseAuth.signOut();
                 finish();
@@ -94,14 +94,14 @@ FirebaseAuth firebaseAuth;
 
     @Override
     public void onBackPressed() {
-        
-        if (backPressedTime + 2000 > System.currentTimeMillis()){
+
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
             backtoast.cancel();
             super.onBackPressed();
             return;
-        }else {
-         backtoast =  Toast.makeText(getBaseContext(), "Appuyez à nouveau pour quitter", Toast.LENGTH_SHORT);
-         backtoast.show();
+        } else {
+            backtoast = Toast.makeText(getBaseContext(), "Appuyez à nouveau pour quitter", Toast.LENGTH_SHORT);
+            backtoast.show();
         }
         backPressedTime = System.currentTimeMillis();
     }

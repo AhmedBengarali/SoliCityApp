@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 <item android:title="Main Application">
+    <menu>
     <group android:checkableBehavior="single"
         android:menuCategory="container">
         <item
@@ -18,6 +19,7 @@
             android:icon="@drawable/ic_box"
             android:title="@string/menu_dons" />
     </group>
+    </menu>
 </item>
 
 </menu>
