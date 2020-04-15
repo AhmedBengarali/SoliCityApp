@@ -31,9 +31,9 @@ import java.util.Calendar;
 public class AddDonationDialogFragment extends DialogFragment {
     Button addDonationBtn;
     ImageButton selectDate;
-    EditText doneeTextName, doneeDate;
+    EditText doneeTextName, doneeCinNum, doneeDate;
     ProgressBar progressBar;
-    boolean isNameValid, isDateValid;
+    boolean isNameValid, isDateValid, isCinValid;
     private DonationViewModel viewModel;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -47,6 +47,7 @@ public class AddDonationDialogFragment extends DialogFragment {
         addDonationBtn = view.findViewById(R.id.button_add_donee);
         selectDate = view.findViewById(R.id.button_select_date);
         doneeTextName = view.findViewById(R.id.edit_text_donee_name);
+        doneeCinNum = view.findViewById(R.id.edit_text_donee_cin);
         doneeDate = view.findViewById(R.id.edit_text_donee_date);
         progressBar = view.findViewById(R.id.add_donee_dialog_progressbar);
 
@@ -81,6 +82,7 @@ public class AddDonationDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String doneeName = doneeTextName.getText().toString();
+                String doneeCin = doneeCinNum.getText().toString();
                 String Date = doneeDate.getText().toString();
 
                 // Check for a valid Name.
@@ -91,6 +93,16 @@ public class AddDonationDialogFragment extends DialogFragment {
                 } else {
                     isNameValid = true;
                 }
+                // Check for a valid CIN Number.
+                if (doneeCinNum.getText().toString().isEmpty()) {
+                    doneeCinNum.setError(getResources().getString(R.string.cin_error));
+                    isCinValid = false;
+                } else if (doneeCinNum.getText().length() < 8 || doneeCinNum.getText().length() > 8) {
+                    doneeCinNum.setError(getResources().getString(R.string.error_invalid_cin));
+                    isCinValid = false;
+                } else {
+                    isCinValid = true;
+                }
                 // Check for a valid date.
                 if (doneeDate.getText().toString().isEmpty()) {
                     doneeDate.setError(getResources().getString(R.string.name_error));
@@ -100,11 +112,12 @@ public class AddDonationDialogFragment extends DialogFragment {
                     isDateValid = true;
                 }
 
-                if (isNameValid && isDateValid) {
+                if (isNameValid && isDateValid && isCinValid) {
                     progressBar.setVisibility(View.VISIBLE);
 
                     Donation donation = new Donation();
                     donation.setDoneeName(doneeName);
+                    donation.setDoneeCIN(doneeCin);
                     donation.setDate(Date);
                     viewModel.addDonation(donation);
 

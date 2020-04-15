@@ -87,8 +87,10 @@ public class BeneficiaryViewModel extends ViewModel {
         });
     }
     void searchBeneficiary(final String s) {
-        Query query= dbBeneficiary.orderByChild("beneficiaryCIN");
-        query.addValueEventListener(new ValueEventListener() {
+        dbBeneficiary.orderByChild("beneficiaryCIN")
+                .startAt(s)
+                .endAt(s+"\uf8ff")
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChildren()) {
@@ -98,9 +100,9 @@ public class BeneficiaryViewModel extends ViewModel {
                         Beneficiary beneficiary = (Beneficiary) datasnapshot.getValue(Beneficiary.class);
 //                        assert beneficiary != null;
                         beneficiary.setBeneficiaryId(Objects.requireNonNull(datasnapshot.getKey()));
-                        if (beneficiary.getBeneficiaryCIN().equals(s)){
+//                        if (beneficiary.getBeneficiaryCIN().equals(s)){
                             beneficiaries.add(beneficiary);
-                        }
+//                        }
                     }
 
                     _beneficiarieslist.postValue(beneficiaries);

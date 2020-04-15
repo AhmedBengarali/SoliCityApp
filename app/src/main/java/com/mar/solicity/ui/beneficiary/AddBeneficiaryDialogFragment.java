@@ -44,6 +44,7 @@ public class AddBeneficiaryDialogFragment extends DialogFragment {
         progressBar = view.findViewById(R.id.add_ben_dialog_progressbar);
 
 
+
         addBeneficiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

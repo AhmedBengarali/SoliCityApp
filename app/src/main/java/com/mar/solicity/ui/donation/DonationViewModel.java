@@ -55,29 +55,57 @@ public class DonationViewModel extends ViewModel {
 
     void fetchDonees() {
         dbDonation.orderByChild("date")
-        .addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    ArrayList<Donation> donations = new ArrayList<>();
-                    donations.clear();
-                    for (DataSnapshot datasnapshot : snapshot.getChildren()) {
-                        Donation donation = (Donation) datasnapshot.getValue(Donation.class);
-                        assert donation != null;
-                        donation.setDonneId(Objects.requireNonNull(datasnapshot.getKey()));
-                        donations.add(donation);
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            ArrayList<Donation> donations = new ArrayList<>();
+                            donations.clear();
+                            for (DataSnapshot datasnapshot : snapshot.getChildren()) {
+                                Donation donation = (Donation) datasnapshot.getValue(Donation.class);
+                                assert donation != null;
+                                donation.setDonneId(Objects.requireNonNull(datasnapshot.getKey()));
+                                donations.add(donation);
+                            }
+
+                            _donationlist.postValue(donations);
+                        }
+
                     }
 
-                    _donationlist.postValue(donations);
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
+                    }
+                });
+    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+    void searchDonee(final String s) {
+        dbDonation.orderByChild("doneeCIN")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChildren()) {
+                            ArrayList<Donation> donations = new ArrayList<>();
+                            donations.clear();
+                            for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                                Donation donation = (Donation) datasnapshot.getValue(Donation.class);
+                                assert donation != null;
+                                donation.setDonneId(Objects.requireNonNull(datasnapshot.getKey()));
+                        if (donation.getDoneeCIN().equals(s)){
+                                donations.add(donation);
+                        }
+                            }
 
-            }
-        });
+                            _donationlist.postValue(donations);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     void updateDonation(Donation donation) {

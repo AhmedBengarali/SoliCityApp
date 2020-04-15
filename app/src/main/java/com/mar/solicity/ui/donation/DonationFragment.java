@@ -3,9 +3,12 @@ package com.mar.solicity.ui.donation;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ public class DonationFragment extends Fragment implements RecyclerViewClickListe
     private DonationAdapter donationAdapter;
     private DonationViewModel donationViewModel;
     AlertDialog.Builder builder;
+    private EditText searchDonee;
 
 
 
@@ -39,6 +43,7 @@ public class DonationFragment extends Fragment implements RecyclerViewClickListe
                 ViewModelProviders.of(this).get(DonationViewModel.class);
         View view = inflater.inflate(R.layout.fragment_donation, container, false);
 
+        searchDonee = view.findViewById(R.id.searchDonee);
         donationAdapter = new DonationAdapter();
         builder = new AlertDialog.Builder(requireContext());
         donationAdapter.listener = this;
@@ -54,7 +59,27 @@ public class DonationFragment extends Fragment implements RecyclerViewClickListe
             }
         });
 
+        searchDonee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().isEmpty()){
+                    donationViewModel.searchDonee(s.toString());
+                }else {
+                    donationViewModel.fetchDonees();
+                }
+            }
+        });
 
 
         FloatingActionButton add_donee = view.findViewById(R.id.add_donee);

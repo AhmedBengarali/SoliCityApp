@@ -10,14 +10,16 @@ public class Donation {
     @NonNull
     String donneId;
     String doneeName;
+    String doneeCIN;
     String date;
 
     public Donation() {
     }
 
-    public Donation(@NonNull String donneId, String doneeName, String date) {
+    public Donation(@NonNull String donneId, String doneeName, String doneeCIN, String date) {
         this.donneId = donneId;
         this.doneeName = doneeName;
+        this.doneeCIN = doneeCIN;
         this.date = date;
     }
 
@@ -36,6 +38,14 @@ public class Donation {
 
     public void setDoneeName(String doneeName) {
         this.doneeName = doneeName;
+    }
+
+    public String getDoneeCIN() {
+        return doneeCIN;
+    }
+
+    public void setDoneeCIN(String doneeCIN) {
+        this.doneeCIN = doneeCIN;
     }
 
     public String getDate() {

@@ -16,7 +16,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">SoliCity Manzel Abderrahmen</string>
-    <string name="nav_header_subtitle">#نحس_بغيري_نعطي_من_خيري</string>
+    <string name="nav_header_subtitle">JCI_MANZEL_ABDERRAHMEN</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Logout</string>
     <string name="delete_confirmation">Etes-vous sûr que vous voulez supprimer</string>
@@ -37,6 +37,8 @@
     <!--/َfragment Add beneficiary Dialog-->
     <string name="modifier_un_beneficiare">تعديل بيانات المستفيد</string>
     <string name="button_modifier_beneficiare">تعديل</string>
+    <string name="phone_register">Numéro De Téléphone</string>
+    <string name="name_register">Nom Et Prénom</string>
 
 
     <array name="unit">

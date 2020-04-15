@@ -34,11 +34,10 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mEmail;
-    EditText mPassword;
+    EditText uEmail, uPassword, uName, uPhone;
     Button mRegistrationBtn;
     TextView mLoginBtn;
-    boolean isEmailValid, isPasswordValid;
+    boolean isEmailValid, isPasswordValid, isNameValid, isPhoneValid;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
@@ -50,8 +49,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        mEmail = findViewById(R.id.register_text_email);
-        mPassword = findViewById(R.id.register_text_password);
+        uName = findViewById(R.id.register_text_name);
+        uEmail = findViewById(R.id.register_text_email);
+        uPhone = findViewById(R.id.register_text_phone);
+        uPassword = findViewById(R.id.register_text_password);
         mRegistrationBtn = findViewById(R.id.button_register);
         mLoginBtn = findViewById(R.id.text_view_login);
 
@@ -68,33 +69,54 @@ public class RegisterActivity extends AppCompatActivity {
         mRegistrationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String txt_email = mEmail.getText().toString().trim();
-                String txt_password = mPassword.getText().toString().trim();
+                final String txt_email = uEmail.getText().toString().trim();
+                final String txt_password = uPassword.getText().toString().trim();
+                final String txt_name = uName.getText().toString().trim();
+                final String txt_phone =uPhone.getText().toString().trim();
 
                 // Check for a valid email address.
-                if (mEmail.getText().toString().isEmpty()) {
-                    mEmail.setError(getResources().getString(R.string.email_error));
+                if (uName.getText().toString().isEmpty()) {
+                    uName.setError(getResources().getString(R.string.email_error));
+                    isNameValid = false;
+                } else {
+                    isNameValid = true;
+                }
+
+                // Check for a valid email address.
+                if (uEmail.getText().toString().isEmpty()) {
+                    uEmail.setError(getResources().getString(R.string.email_error));
                     isEmailValid = false;
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(mEmail.getText().toString()).matches()) {
-                    mEmail.setError(getResources().getString(R.string.error_invalid_email));
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(uEmail.getText().toString()).matches()) {
+                    uEmail.setError(getResources().getString(R.string.error_invalid_email));
                     isEmailValid = false;
                 } else {
                     isEmailValid = true;
                 }
+                // Check for a valid Phone Number.
+                if (uPhone.getText().toString().isEmpty()) {
+                    uPhone.setError(getResources().getString(R.string.phone_error));
+                    isPhoneValid = false;
+                } else if (uPhone.getText().length() < 8) {
+                    uPhone.setError(getResources().getString(R.string.error_invalid_phone));
+                    isPhoneValid = false;
+                } else {
+                    isPhoneValid = true;
+                }
+
 
                 // Check for a valid password.
-                if (mPassword.getText().toString().isEmpty()) {
-                    mPassword.setError(getResources().getString(R.string.password_error));
+                if (uPassword.getText().toString().isEmpty()) {
+                    uPassword.setError(getResources().getString(R.string.password_error));
                     isPasswordValid = false;
-                } else if (mPassword.getText().length() < 6) {
-                    mPassword.setError(getResources().getString(R.string.error_invalid_password));
+                } else if (uPassword.getText().length() < 6) {
+                    uPassword.setError(getResources().getString(R.string.error_invalid_password));
                     isPasswordValid = false;
                 } else {
                     isPasswordValid = true;
                 }
 
                 if (isEmailValid && isPasswordValid) {
-                    mPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                    uPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     Toast.makeText(getApplicationContext(), "One Moment !", Toast.LENGTH_SHORT).show();
 
                     progressBar.setVisibility(View.VISIBLE);
@@ -109,6 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 DocumentReference documentReference = fStore.collection("users").document(userID);
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("email", txt_email);
+                                user.put("name" , txt_name);
+                                user.put("phone",txt_phone);
                                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
