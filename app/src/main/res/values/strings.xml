@@ -39,6 +39,8 @@
     <string name="button_modifier_beneficiare">تعديل</string>
     <string name="phone_register">Numéro De Téléphone</string>
     <string name="name_register">Nom Et Prénom</string>
+    <string name="open_register">Vous n\'avez pas de compte ? \n Créez-en un !</string>
+    <string name="open_signIn">Vous avez déja un compte ? \n Cliquez ici</string>
 
 
     <array name="unit">

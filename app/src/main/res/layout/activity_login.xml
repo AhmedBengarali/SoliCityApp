@@ -1,141 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/login_bk"
     android:orientation="vertical"
     tools:context=".loginandregister.LoginActivity"
     android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:focusableInTouchMode="true"
     android:onClick="hideKeyboard">
 
-    <RelativeLayout
-        android:id="@+id/loginLayout"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/loginLayout"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <TextView
-            android:id="@+id/login_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="26dp"
-            android:fontFamily="@font/alegreya"
-            android:gravity="center_horizontal"
-            android:text="SoliCity"
-            android:textAlignment="center"
-            android:textColor="#E6B1BA"
-            android:textSize="60sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/login_title"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="26dp"-->
+<!--            android:fontFamily="@font/alegreya"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="SoliCity"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#E6B1BA"-->
+<!--            android:textSize="60sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_title"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="70dp"
-            android:background="#fff"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:padding="20dp">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/login_title"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:layout_marginTop="70dp"-->
+<!--            android:background="#fff"-->
+<!--            android:elevation="4dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="20dp">-->
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="30dp">
-
-
-                <TextView
-                    android:labelFor="@id/login_text_email"
-                    android:text="email"
-                    android:fontFamily="sans-serif-light"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <EditText
-                    android:id="@+id/login_text_email"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="10dp"
-                    android:singleLine="true"
-                    android:layout_marginBottom="10dp"
-                    android:hint="solicity@gmail.com"
-                    android:inputType="textEmailAddress"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:labelFor="@id/login_text_password"
-                    android:text="mot de passe" />
-
-                <EditText
-                    android:drawablePadding="10dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:id="@+id/login_text_password"
-                    android:drawableLeft="@drawable/ic_lock"
-                    android:hint="Password"
-                    android:inputType="textPassword"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingTop="30dp">-->
 
 
-                <TextView
-                    android:id="@+id/text_view_forget_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:paddingTop="5dp"
-                    android:text="Mot de passe Oublié ?" />
+<!--                <TextView-->
+<!--                    android:labelFor="@id/login_text_email"-->
+<!--                    android:text="email"-->
+<!--                    android:fontFamily="sans-serif-light"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/login_text_email"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:drawableLeft="@drawable/ic_email"-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:hint="solicity@gmail.com"-->
+<!--                    android:inputType="textEmailAddress"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="sans-serif-light"-->
+<!--                    android:labelFor="@id/login_text_password"-->
+<!--                    android:text="mot de passe" />-->
+
+<!--                <EditText-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:id="@+id/login_text_password"-->
+<!--                    android:drawableLeft="@drawable/ic_lock"-->
+<!--                    android:hint="Password"-->
+<!--                    android:inputType="textPassword"/>-->
 
 
-                <Button
-                    android:id="@+id/button_sign_in"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="22dp"
-                    android:background="@color/colorAccent"
-                    android:text="Se connecter"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/text_view_forget_password"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:text="Mot de passe Oublié ?" />-->
 
-                <TextView
-                    android:id="@+id/text_view_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/alegreya"
-                    android:text="Vous n'avez pas de compte ?\n Créez-en un !"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textSize="20sp" />
-            </LinearLayout>
 
-        </RelativeLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/button_sign_in"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="22dp"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:text="Se connecter"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:textSize="18sp" />-->
 
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/login_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/user_profile_image_background"
-            android:elevation="4dp"
-            android:src="@drawable/ic_boy"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/text_view_register"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    android:text="Vous n'avez pas de compte ?\n Créez-en un !"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+<!--                    android:textSize="20sp" />-->
+<!--            </LinearLayout>-->
 
-    </RelativeLayout>
+<!--        </RelativeLayout>-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/user_profile_photo"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_below="@+id/login_title"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/user_profile_image_background"-->
+<!--            android:elevation="4dp"-->
+<!--            android:src="@drawable/ic_boy"/>-->
+
+<!--    </RelativeLayout>-->
+    <include
+        android:id="@+id/loginlayout"
+        layout="@layout/layout_login"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="183dp" />
 
     <ProgressBar
         android:id="@+id/login_progressbar"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat"/>
+        android:layout_centerInParent="true"
+        android:theme="@style/ThemeOverlay.AppCompat"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/loginlayout"
+        app:layout_constraintEnd_toEndOf="@+id/loginlayout"
+        app:layout_constraintStart_toStartOf="@+id/loginlayout"
+        app:layout_constraintTop_toTopOf="@+id/loginlayout"
+        app:layout_constraintVertical_bias="0.42000002" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

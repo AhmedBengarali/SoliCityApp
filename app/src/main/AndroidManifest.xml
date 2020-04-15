@@ -33,9 +33,9 @@
         <activity android:name=".loginandregister.PasswordResetActivity"
             android:theme="@style/AppTheme.NoActionBars"/>
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+<!--        <meta-data-->
+<!--            android:name="preloaded_fonts"-->
+<!--            android:resource="@array/preloaded_fonts" />-->
     </application>
 
 </manifest>

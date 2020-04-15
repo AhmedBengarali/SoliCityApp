@@ -1,166 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/login_bk"
+    android:focusableInTouchMode="true"
+    android:onClick="hideKeyboard"
     android:orientation="vertical"
-    tools:context=".loginandregister.RegisterActivity"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:onClick="hideKeyboard">
+    tools:context=".loginandregister.RegisterActivity">
 
-    <RelativeLayout
-        android:id="@+id/loginLayout"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/login_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"
-            android:fontFamily="@font/alegreya"
-            android:gravity="center_horizontal"
-            android:text="New User Registration"
-            android:textColor="#E6B1BA"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_title"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="70dp"
-            android:background="#fff"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="30dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_register_name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/register_text_name"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_person_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:layout_marginBottom="10dp"
-                        android:hint="@string/name_register"
-                        android:inputType="textPersonName"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_register_email"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/register_text_email"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_email"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:layout_marginBottom="10dp"
-                        android:hint="solicity@gmail.com"
-                        android:inputType="textEmailAddress"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_register_phone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/register_text_phone"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_phone_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:layout_marginBottom="10dp"
-                        android:hint="@string/phone_register"
-                        android:inputType="textEmailAddress"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_register_password"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:drawablePadding="10dp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:id="@+id/register_text_password"
-                        android:drawableLeft="@drawable/ic_lock"
-                        android:hint="Password"
-                        android:inputType="textPassword"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/button_register"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="22dp"
-                    android:background="@color/colorAccent"
-                    android:text="S'inscrire"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/text_view_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/alegreya"
-                    android:text="Vous avez déja un compte ? \n Cliquez ici"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/login_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/user_profile_image_background"
-            android:elevation="4dp"
-            android:src="@drawable/ic_boy"/>
-
-    </RelativeLayout>
+    <include
+        android:id="@+id/registerLayout"
+        layout="@layout/layout_register" />
 
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:theme="@style/ThemeOverlay.AppCompat"
         android:visibility="gone"
-        android:theme="@style/ThemeOverlay.AppCompat"/>
+        app:layout_constraintBottom_toBottomOf="@+id/registerLayout"
+        app:layout_constraintEnd_toEndOf="@+id/registerLayout"
+        app:layout_constraintStart_toStartOf="@+id/registerLayout"
+        app:layout_constraintTop_toTopOf="@+id/registerLayout"
+        app:layout_constraintVertical_bias="0.45" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
