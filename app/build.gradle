@@ -53,6 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'br.com.simplepass:loading-button-android:1.14.0'
 
 
     def nav_version = "2.3.0-alpha04"

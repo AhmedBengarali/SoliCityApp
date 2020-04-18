@@ -1,6 +1,7 @@
 package com.mar.solicity.loginandregister;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -72,5 +73,10 @@ public class PasswordResetActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public void onLoginClick(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+
     }
 }

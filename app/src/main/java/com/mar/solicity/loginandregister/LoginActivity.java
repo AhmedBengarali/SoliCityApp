@@ -3,19 +3,24 @@ package com.mar.solicity.loginandregister;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,11 +30,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mar.solicity.MainActivity;
 import com.mar.solicity.R;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
+
 
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
-    Button mLoginBtn;
-    TextView mCreateBtn, forgetTextLink;
+    CircularProgressButton mLoginBtn;
+    TextView forgetTextLink;
     boolean isEmailValid, isPasswordValid;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
@@ -38,18 +45,22 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         setContentView(R.layout.activity_login);
-
 
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();
         initializeUI();
 
+
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String lEmail = mEmail.getText().toString().trim();
-                String lPassword = mPassword.getText().toString().trim();
+                final String lPassword = mPassword.getText().toString().trim();
 
                 // Check for a valid email address.
                 if (mEmail.getText().toString().isEmpty()) {
@@ -74,22 +85,20 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // Check for a valid email address and password.
+
                 if (isEmailValid && isPasswordValid) {
                     mPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
                     Toast.makeText(getApplicationContext(), "One Moment !", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.VISIBLE);
                     fAuth.signInWithEmailAndPassword(lEmail, lPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -103,28 +112,29 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PasswordResetActivity.class));
             }
         });
-        mCreateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-            }
-        });
 
-    }
 
-    private void initializeUI() {
-        mEmail = findViewById(R.id.login_text_email);
-        mPassword = findViewById(R.id.login_text_password);
-        progressBar = findViewById(R.id.login_progressbar);
-        mLoginBtn = findViewById(R.id.button_sign_in);
-        mCreateBtn = findViewById(R.id.text_view_register);
-        forgetTextLink = findViewById(R.id.text_view_forget_password);
     }
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    public void onLoginClick(View View) {
+        startActivity(new Intent(this, RegisterActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+
+    }
+
+
+    private void initializeUI() {
+        mEmail = findViewById(R.id.login_text_email);
+        mPassword = findViewById(R.id.login_text_password);
+        mLoginBtn = findViewById(R.id.button_sign_in);
+        forgetTextLink = findViewById(R.id.text_view_forget_password);
+    }
+
 
     @Override
     protected void onStart() {

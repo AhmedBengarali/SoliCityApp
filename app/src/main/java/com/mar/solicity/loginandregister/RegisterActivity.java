@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -23,42 +26,47 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 import com.mar.solicity.MainActivity;
 import com.mar.solicity.R;
+import com.mar.solicity.data.Users;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
+
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText uEmail, uPassword, uName, uPhone;
-    Button mRegistrationBtn;
-    TextView mLoginBtn;
+    CircularProgressButton mRegistrationBtn;
+
     boolean isEmailValid, isPasswordValid, isNameValid, isPhoneValid;
-    FirebaseAuth fAuth;
-    ProgressBar progressBar;
-    FirebaseFirestore fStore;
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    ;
+    //    ProgressBar progressBar;
+    private DatabaseReference dbUsers = FirebaseDatabase.getInstance().getReference("Users");
     String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        changeStatusBarColor();
 
         uName = findViewById(R.id.register_text_name);
         uEmail = findViewById(R.id.register_text_email);
         uPhone = findViewById(R.id.register_text_phone);
         uPassword = findViewById(R.id.register_text_password);
         mRegistrationBtn = findViewById(R.id.button_register);
-        mLoginBtn = findViewById(R.id.text_view_login);
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressbar);
+
+//        progressBar = findViewById(R.id.progressbar);
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -72,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String txt_email = uEmail.getText().toString().trim();
                 final String txt_password = uPassword.getText().toString().trim();
                 final String txt_name = uName.getText().toString().trim();
-                final String txt_phone =uPhone.getText().toString().trim();
+                final String txt_phone = uPhone.getText().toString().trim();
 
                 // Check for a valid email address.
                 if (uName.getText().toString().isEmpty()) {
@@ -115,40 +123,29 @@ public class RegisterActivity extends AppCompatActivity {
                     isPasswordValid = true;
                 }
 
-                if (isEmailValid && isPasswordValid) {
+                if (isNameValid && isEmailValid && isPhoneValid && isPasswordValid) {
                     uPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     Toast.makeText(getApplicationContext(), "One Moment !", Toast.LENGTH_SHORT).show();
 
-                    progressBar.setVisibility(View.VISIBLE);
+//                    progressBar.setVisibility(View.VISIBLE);
                     // Register the User in The FireBase
 
-                    fAuth.createUserWithEmailAndPassword(txt_email, txt_email).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    fAuth.createUserWithEmailAndPassword(txt_email, txt_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "User Created Successfully", Toast.LENGTH_SHORT).show();
                                 userID = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("users").document(userID);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("email", txt_email);
-                                user.put("name" , txt_name);
-                                user.put("phone",txt_phone);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: user Profile is created for " + userID);
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "onFailure: " + e.toString());
-                                    }
-                                });
-                                progressBar.setVisibility(View.GONE);
+                                Users userInfo = new Users();
+                                userInfo.setUserName(txt_name);
+                                userInfo.setUserEmail(txt_email);
+                                userInfo.setUserPhone(txt_phone);
+                                dbUsers.child(userID).setValue(userInfo);
+                                Toast.makeText(RegisterActivity.this, "User Created Successfully", Toast.LENGTH_SHORT).show();
+
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             } else {
                                 Toast.makeText(RegisterActivity.this, "An Error Has occurred ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
+//                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -156,14 +153,21 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // redirect to LoginActivity
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
+
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
+        }
+    }
+
+    public void onLoginClick(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+
     }
 
     public void hideKeyboard(View view) {

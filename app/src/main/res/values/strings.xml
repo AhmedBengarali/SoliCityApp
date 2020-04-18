@@ -27,20 +27,24 @@
     <string name="product_quantity_error">Veuillez entrez la quantité à ajouté</string>
 
 <!--/َfragment Add beneficiary Dialog-->
-    <string name="ajouter_un_beneficiare">إضافة مستفيد</string>
-    <string name="nom_beneficiare">الاسم و اللقب </string>
-    <string name="numero_beneficiaire">الهاتف </string>
-    <string name="adresse_beneficiaire">العنوان </string>
-    <string name="cin_beneficiaire">رقم بطاقة التعريف الوطنية </string>
-    <string name="button_ajouter_un_beneficiare">إضافة</string>
+    <string name="ajouter_un_beneficiare">Ajouter Un Bénéficiaire</string>
+    <string name="nom_beneficiare">Nom Et Prénom </string>
+    <string name="numero_beneficiaire">Numéro de Téléphone </string>
+    <string name="adresse_beneficiaire">Addresse </string>
+    <string name="cin_beneficiaire">Numéro CIN</string>
+    <string name="button_ajouter_un_beneficiare">Ajouter</string>
 
     <!--/َfragment Add beneficiary Dialog-->
-    <string name="modifier_un_beneficiare">تعديل بيانات المستفيد</string>
-    <string name="button_modifier_beneficiare">تعديل</string>
+    <string name="modifier_un_beneficiare">Modifier Un Bénéficiaire</string>
+    <string name="button_modifier_beneficiare">Modifier</string>
     <string name="phone_register">Numéro De Téléphone</string>
     <string name="name_register">Nom Et Prénom</string>
     <string name="open_register">Vous n\'avez pas de compte ? \n Créez-en un !</string>
     <string name="open_signIn">Vous avez déja un compte ? \n Cliquez ici</string>
+    <string name="Login_Citation">• أن التآخي البشري يفوق سيادة الدول. \n • أن خدمة الإنسان هي أنبل عمل في الحياة.</string>
+    <string name="Reset_Password">Entrez votre adresse e mail pour réinitialiser votre Mot de Passe</string>
+    <string name="reset_pass_btn">Réinitialiser le mot de passe</string>
+    <string name="reset_title">Vous avez oublié\n votre mot de passe?</string>
 
 
     <array name="unit">
