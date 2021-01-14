@@ -38,35 +38,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_prod_quantity"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:inputType="number"
             android:hint="Quantité à ajouté" />
 
+            <Spinner
+                android:textAlignment="center"
+                android:id="@+id/add_prod_unit"
+                android:layout_width="113dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:entries="@array/unit"
+                android:foregroundGravity="center"
+                android:gravity="center"/>
+        </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
 
-        <Spinner
-            android:textAlignment="center"
-            android:id="@+id/add_prod_unit"
-            android:layout_width="113dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:entries="@array/unit"
-            android:foregroundGravity="center"
-            android:gravity="center"/>
-
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/login_bk_color"
+    android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -14,10 +14,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="690dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:paddingTop="20dp">
 
         <LinearLayout
@@ -27,20 +26,32 @@
             android:padding="20dp">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="176dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/logo_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_register_hero" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:src="@drawable/solicity_logo"
+                    android:layout_gravity="center"/>
+
+
+
             </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_login_email"
                 style="@style/parent"
+                android:textColorHint="@color/login_bk_color"
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -54,6 +65,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_login_password"
                 style="@style/parent"
+                android:textColorHint="@color/login_bk_color"
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -65,12 +77,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                style="@style/viewParent"
                 android:id="@+id/text_view_forget_password"
+                style="@style/viewParent"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:text="Mot de passe Oublié ?"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/login_bk_color"
                 android:textSize="@dimen/newsMoreTextSize" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
@@ -78,103 +90,39 @@
                 style="@style/loginButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
+                android:background="@drawable/login_button_bk"
                 android:text="Login"
                 android:textAlignment="center"
-                android:background="@drawable/login_button_bk"
                 app:initialCornerAngle="48dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
-            <TextView
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                android:onClick="onLoginClick"
-                android:text="@string/open_register"
-                android:textAlignment="center"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="155dp"
+                android:layout_gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:weightSum="12">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
-
-
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:fontFamily="@font/alegreya"
-                    android:text="نحــن نعتقــد :"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                android:gravity="center">
-
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
+                <ImageView
+                    android:id="@+id/login_jci_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:fontFamily="@font/alegreya"
-                    android:text="@string/Login_Citation"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:src="@drawable/jci_logo_blanc" />
+
+
+            </RelativeLayout>
         </LinearLayout>
 
 
-
-
-
-        </LinearLayout>
 
     </ScrollView>
-
-    <View
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_side_bg"/>
-
-    <ImageView
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_img"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="onLoginClick" />
-
-
-
 </RelativeLayout>

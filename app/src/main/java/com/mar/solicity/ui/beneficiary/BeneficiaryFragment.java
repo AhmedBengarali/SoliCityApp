@@ -6,24 +6,21 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.mar.solicity.R;
 import com.mar.solicity.data.Beneficiary;
 
@@ -68,12 +65,11 @@ public class BeneficiaryFragment extends Fragment implements RecyclerViewClickLi
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (!s.toString().isEmpty()){
                     beneficiaryViewModel.searchBeneficiary(s.toString());
-                }else {
-                    beneficiaryViewModel.fetchBeneficiaries();
                 }
+
+
             }
         });
 

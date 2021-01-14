@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">SoliCity</string>
-    <string name="name_error">Please enter your name</string>
-    <string name="cin_error">Please enter your CIN number</string>
-    <string name="phone_error">Please enter a phone number</string>
-    <string name="email_error">Please enter a email address</string>
-    <string name="address_error">Please enter a email address</string>
+    <string name="name_error">Veuillez Entrer votre Nom</string>
+    <string name="cin_error">Veuillez Entrer votre Numéro CIN</string>
+    <string name="phone_error">Veuillez Entrer votre Numéro de téléphone</string>
+    <string name="email_error">Veuillez Entrer votre address email </string>
+    <string name="address_error">euillez Entrer votre address </string>
     <string name="error_invalid_cin">votre numéro de CIN doit comporter seulement 8 chiffres </string>
     <string name="error_invalid_phone">votre numéro de téléphone doit comporter 8 chiffres minimum</string>
-    <string name="error_invalid_email">Email is not valid</string>
-    <string name="password_error">Please enter a password</string>
-    <string name="error_invalid_password">Please enter a minimum password of 6 characters</string>
+    <string name="error_invalid_email">Email n\'est pas valide</string>
+    <string name="password_error">Veuillez Entre votre Mot de passe</string>
+    <string name="error_invalid_password">votre numéro de téléphone doit comporter 6 caractères minimum</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="title_activity_main">MainActivity</string>
@@ -22,11 +22,12 @@
     <string name="delete_confirmation">Etes-vous sûr que vous voulez supprimer</string>
     <string name="menu_beneficiary">Gestion des Bénéficiares</string>
     <string name="menu_product">Gestion de Stock</string>
+    <string name="home_menu">Page d\'accueil</string>
     <string name="menu_dons">Gestion des Dons</string>
     <string name="product_name_error">Veuillez entrez un nom de produit</string>
     <string name="product_quantity_error">Veuillez entrez la quantité à ajouté</string>
 
-<!--/َfragment Add beneficiary Dialog-->
+    <!--/َfragment Add beneficiary Dialog-->
     <string name="ajouter_un_beneficiare">Ajouter Un Bénéficiaire</string>
     <string name="nom_beneficiare">Nom Et Prénom </string>
     <string name="numero_beneficiaire">Numéro de Téléphone </string>
@@ -45,17 +46,31 @@
     <string name="Reset_Password">Entrez votre adresse e mail pour réinitialiser votre Mot de Passe</string>
     <string name="reset_pass_btn">Réinitialiser le mot de passe</string>
     <string name="reset_title">Vous avez oublié\n votre mot de passe?</string>
+    <string name="dbuser_setiing">Users</string>
 
 
     <array name="unit">
-      <item>Kg</item>
-      <item>Litre</item>
-      <item>Unité</item>
-  </array>
+        <item>Kg</item>
+        <item>Litre</item>
+        <item>Unité</item>
+    </array>
+    <array name="roles">
+        <item>Admin</item>
+        <item>Simple user</item>
+    </array>
     <array name="filter_Product">
-        <item>Tous les Produits </item>
+        <item>Tous les Produits</item>
         <item>Produits En Stock</item>
         <item>produits Epuisés</item>
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_def1">SoliCity est une application de gestion de stock fondée par JCI MANZEL ABDERRAHMENavec laquelle vous pouvez piloter vos niveaux de stocks de manière numérique.</string>
+    <string name="jci_mission">Notre Mission est d’offrir aux jeunes gens des opportunités de développement qui leur permettront de créer des changements positifs.</string>
+    <string name="jci_vision">Notre Vision est d’être le principal réseau mondial de jeunes citoyens actifs.</string>
+    <string name="mon_profile">Mon Profile</string>
+    <string name="add_user">Ajouter Un Utilisateur</string>
+    <string name="Login_Text">Bienvenue Dans Votre Application De Gestion Stock SoliCity</string>
 
 </resources>

@@ -38,35 +38,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_prod_quant"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:hint="Quantité à modifié" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_prod_quant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Quantité à modifié"
+                android:inputType="number" />
+
+            <Spinner
+                android:id="@+id/edit_prod_unit"
+                android:layout_width="113dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:entries="@array/unit"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
+        </LinearLayout>
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
 
-        <Spinner
-            android:textAlignment="center"
-            android:id="@+id/edit_prod_unit"
-            android:layout_width="113dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:entries="@array/unit"
-            android:foregroundGravity="center"
-            android:gravity="center" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_edit_prod"

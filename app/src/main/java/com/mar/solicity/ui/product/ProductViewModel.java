@@ -68,7 +68,6 @@ public class ProductViewModel extends ViewModel {
                     ArrayList<Product> products = new ArrayList<>();
                     for (DataSnapshot datasnapshot : snapshot.getChildren()) {
                         Product product = (Product) datasnapshot.getValue(Product.class);
-//                        assert beneficiary != null;
                         product.setProductId(Objects.requireNonNull(datasnapshot.getKey()));
                         products.add(product);
                     }

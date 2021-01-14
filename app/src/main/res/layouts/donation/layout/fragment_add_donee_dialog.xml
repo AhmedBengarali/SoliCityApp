@@ -45,8 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="number"
-                android:hint="@string/cin_beneficiaire"
-                android:textAlignment="textEnd"/>
+                android:hint="@string/cin_beneficiaire" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

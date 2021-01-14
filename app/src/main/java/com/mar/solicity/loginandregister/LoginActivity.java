@@ -6,18 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     CircularProgressButton mLoginBtn;
     TextView forgetTextLink;
     boolean isEmailValid, isPasswordValid;
-    ProgressBar progressBar;
     FirebaseAuth fAuth;
     FirebaseUser currentUser;
 
@@ -120,13 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-    public void onLoginClick(View View) {
-        startActivity(new Intent(this, RegisterActivity.class));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-
-    }
-
 
     private void initializeUI() {
         mEmail = findViewById(R.id.login_text_email);

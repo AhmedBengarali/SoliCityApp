@@ -42,6 +42,7 @@ public class ProductFragment extends Fragment implements RecyclerViewClickListen
         productViewModel =
                 ViewModelProviders.of(this).get(ProductViewModel.class);
         View view = inflater.inflate(R.layout.fragment_product, container, false);
+        setHasOptionsMenu(false);
         productAdapter = new ProductAdapter();
         builder = new AlertDialog.Builder(requireContext());
         productAdapter.listener = this;
